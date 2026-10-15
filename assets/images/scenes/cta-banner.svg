@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
+  <defs>
+    <linearGradient id="ctasky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2313"/>
+      <stop offset="1" stop-color="#12150F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="800" fill="url(#ctasky)"/>
+  <circle cx="1300" cy="220" r="90" fill="#E8792D" opacity="0.4"/>
+  <g fill="#0D110D" opacity="0.85">
+    <rect x="150" y="480" width="90" height="220"/>
+    <circle cx="195" cy="440" r="40"/>
+    <rect x="360" y="500" width="90" height="200"/>
+    <circle cx="405" cy="460" r="40"/>
+    <rect x="1180" y="490" width="90" height="210"/>
+    <circle cx="1225" cy="450" r="40"/>
+  </g>
+  <rect x="0" y="690" width="1600" height="110" fill="#0A0C09"/>
+</svg>

@@ -1,0 +1,76 @@
+/* TargetWeb 3 Customizer repeater control — admin panel only */
+
+.gl-repeater-control{margin-bottom:6px;}
+.gl-repeater-control .customize-control-title{font-weight:600;}
+.gl-repeater{margin-top:8px;}
+
+.gl-repeater__items{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+
+.gl-repeater__row{
+	border:1px solid #dcdcde;border-radius:6px;background:#fff;overflow:hidden;
+}
+.gl-repeater__row.is-open .gl-repeater__row-body{display:block;}
+.gl-repeater__row-body{display:none;padding:12px;border-top:1px solid #dcdcde;background:#fbfbfb;}
+
+.gl-repeater__row-head{
+	display:flex;align-items:center;gap:8px;padding:9px 10px;cursor:pointer;user-select:none;
+}
+.gl-repeater__drag{color:#a7aaad;cursor:grab;font-size:16px;}
+.gl-repeater__row-title{flex:1;font-size:13px;font-weight:600;color:#1d2327;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.gl-repeater__row-actions{display:flex;gap:2px;}
+.gl-repeater__row-actions button{
+	background:none;border:none;padding:4px;cursor:pointer;color:#787c82;border-radius:4px;
+}
+.gl-repeater__row-actions button:hover{background:#f0f0f1;color:#1d2327;}
+.gl-repeater__row-actions .dashicons{font-size:15px;width:15px;height:15px;}
+
+.gl-repeater__field{margin-bottom:10px;}
+.gl-repeater__field--full{width:100%;}
+.gl-repeater__field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:#646970;margin-bottom:4px;}
+.gl-repeater__field input[type="text"],
+.gl-repeater__field input[type="number"],
+.gl-repeater__field select,
+.gl-repeater__field textarea{
+	width:100%;font-size:13px;border-radius:4px;border:1px solid #8c8f94;padding:6px 8px;
+}
+.gl-repeater__field textarea{resize:vertical;}
+
+.gl-icon-field{display:flex;align-items:center;gap:8px;}
+.gl-icon-preview{font-size:20px;width:20px;height:20px;color:#3EA65A;flex-shrink:0;}
+.gl-icon-field select{flex:1;}
+
+.gl-image-field{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.gl-image-field__preview{
+	width:64px;height:64px;border-radius:6px;background:#f0f0f1 center/cover no-repeat;
+	display:flex;align-items:center;justify-content:center;color:#a7aaad;border:1px solid #dcdcde;flex-shrink:0;
+}
+.gl-image-field__buttons{display:flex;flex-direction:column;gap:4px;align-items:flex-start;}
+.gl-image-field__remove{color:#b32d2e;font-size:12px;}
+
+.gl-icon-preview--none{
+	display:inline-flex;align-items:center;justify-content:center;
+	width:20px;height:20px;color:#a7aaad;font-size:14px;flex-shrink:0;
+}
+
+.gl-repeater__add{
+	display:inline-flex;align-items:center;gap:6px;
+}
+.gl-repeater__add .dashicons{font-size:16px;width:16px;height:16px;}
+
+/* ---------- Section order control ---------- */
+.gl-section-order-control .customize-control-title{font-weight:600;}
+.gl-section-order__list{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.gl-section-order__row{
+	display:flex;align-items:center;gap:8px;padding:9px 10px;
+	border:1px solid #dcdcde;border-radius:6px;background:#fff;
+}
+.gl-section-order__row.is-disabled{opacity:.5;background:#f6f7f7;}
+.gl-section-order__drag{color:#a7aaad;font-size:16px;cursor:grab;}
+.gl-section-order__check{display:flex;align-items:center;gap:8px;flex:1;font-size:13px;font-weight:600;color:#1d2327;cursor:pointer;}
+.gl-section-order__check input{margin:0;}
+.gl-section-order__actions{display:flex;gap:2px;}
+.gl-section-order__actions button{
+	background:none;border:none;padding:4px;cursor:pointer;color:#787c82;border-radius:4px;
+}
+.gl-section-order__actions button:hover{background:#f0f0f1;color:#1d2327;}
+.gl-section-order__actions .dashicons{font-size:15px;width:15px;height:15px;}

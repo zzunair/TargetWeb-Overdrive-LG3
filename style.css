@@ -1,0 +1,21 @@
+/*
+Theme Name: TargetWeb Summit
+Theme URI: https://www.idealcomputersystems.com/targetweb
+Author: TargetWeb
+Author URI: https://www.idealcomputersystems.com/targetweb
+Description: A dark, bold, condensed-type standalone WordPress theme for commercial outdoor power equipment dealers. Every section — hero, equipment categories (with popup detail modals), brand wall, why-us tiles, quote form, mini trust row, CTA banner, footer — is editable from a single deep Customizer panel with add/remove/reorder repeaters. No parent theme, no page builder, no plugin dependency.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Tested up to: 6.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: targetweb3
+Tags: e-commerce, custom-colors, custom-menu, featured-images, full-width-template, one-column, translation-ready
+
+TargetWeb Summit WordPress Theme, (C) TargetWeb
+TargetWeb Summit is distributed under the terms of the GNU GPL v2 or later.
+*/
+
+/* Base file intentionally minimal — all real styling lives in
+   assets/css/main.css, enqueued in functions.php. */

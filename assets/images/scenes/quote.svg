@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000">
+  <defs>
+    <linearGradient id="qsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B2436"/>
+      <stop offset="1" stop-color="#0D110D"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1000" fill="url(#qsky)"/>
+  <g fill="#0A0C09">
+    <rect x="60" y="560" width="780" height="220"/>
+    <rect x="100" y="600" width="160" height="80" fill="#3D3520" opacity="0.6"/>
+    <rect x="320" y="600" width="160" height="80" fill="#3D3520" opacity="0.6"/>
+    <rect x="540" y="600" width="160" height="80" fill="#3D3520" opacity="0.6"/>
+  </g>
+  <g fill="#E8B25A" opacity="0.7">
+    <circle cx="140" cy="540" r="6"/>
+    <circle cx="420" cy="540" r="6"/>
+    <circle cx="700" cy="540" r="6"/>
+  </g>
+  <rect x="0" y="780" width="900" height="220" fill="#0D110D"/>
+</svg>

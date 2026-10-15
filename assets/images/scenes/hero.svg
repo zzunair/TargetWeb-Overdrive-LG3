@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A2010"/>
+      <stop offset="0.5" stop-color="#3D2A14"/>
+      <stop offset="1" stop-color="#151A10"/>
+    </linearGradient>
+    <linearGradient id="fieldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A3A18"/>
+      <stop offset="1" stop-color="#1C1A0E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#skyg)"/>
+  <circle cx="1250" cy="260" r="110" fill="#E8B25A" opacity="0.55"/>
+  <rect x="0" y="560" width="1600" height="340" fill="url(#fieldg)"/>
+  <g opacity="0.5" fill="#0D110D">
+    <circle cx="120" cy="580" r="90"/>
+    <circle cx="260" cy="600" r="60"/>
+    <circle cx="1450" cy="590" r="100"/>
+  </g>
+  <g transform="translate(820,700)">
+    <rect x="-170" y="-70" width="340" height="100" rx="28" fill="#141810"/>
+    <rect x="-80" y="-130" width="140" height="72" rx="20" fill="#141810"/>
+    <circle cx="30" cy="-165" r="34" fill="none" stroke="#F4F5F1" stroke-width="12"/>
+    <circle cx="-110" cy="64" r="70" fill="#0A0C09"/>
+    <circle cx="140" cy="64" r="70" fill="#0A0C09"/>
+    <circle cx="-110" cy="64" r="28" fill="#4CAF50"/>
+    <circle cx="140" cy="64" r="28" fill="#4CAF50"/>
+    <circle cx="-215" cy="40" r="34" fill="#0A0C09"/>
+    <circle cx="-215" cy="40" r="14" fill="#4CAF50"/>
+  </g>
+</svg>
