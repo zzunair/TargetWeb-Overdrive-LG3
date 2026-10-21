@@ -92,6 +92,14 @@ p{margin:0 0 1em;}
 	.tw3-header__nav,.tw3-header__actions{display:none;}
 	.tw3-mobile-toggle{display:flex;}
 }
+@media (max-width:640px){
+	.tw3-header__inner{gap:12px;padding:12px 16px;}
+	.tw3-header__brand,.tw3-header__logo-fallback{min-width:0;flex:1;}
+	.tw3-logo-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
+	.tw3-mobile-toggle{width:44px;height:44px;}
+	.tw3-quote__media-copy{padding:28px 20px;}
+	.tw3-quote__form-wrap{padding:32px 20px;}
+}
 
 /* =========================================================
    HERO
@@ -200,6 +208,13 @@ p{margin:0 0 1em;}
 .tw3-form-success{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 10px;}
 .tw3-form-success .dashicons{font-size:44px;width:44px;height:44px;color:var(--tw-green-bright);}
 .tw3-form-success p{color:var(--tw-text-ondark-muted);}
+.tw3-form-error{margin:0 0 16px;padding:12px 14px;border-radius:var(--tw-radius-sm);background:rgba(220,38,38,.14);color:#fecaca;font-size:14px;}
+.tw3-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.tw3-quote__form-wrap #tw-crm-popup[data-tw-crm-inline]{display:block;position:static;padding:0;}
+.tw3-quote__form-wrap .tw-crm-form__title,.tw3-quote__form-wrap .tw-crm-popup__close{display:none;}
+.tw3-quote__form-wrap .tw-crm-form__field label{color:var(--tw-text-ondark-muted);}
+.tw3-quote__form-wrap .tw-crm-form__submit{background:var(--tw-green);color:#fff;}
+.tw3-quote__form-wrap .tw-crm-form__submit:hover:not(:disabled){background:var(--tw-green-bright);}
 
 @media (max-width:900px){
 	.tw3-quote{grid-template-columns:1fr;min-height:auto;}

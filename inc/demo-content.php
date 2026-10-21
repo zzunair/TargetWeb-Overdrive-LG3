@@ -1,6 +1,6 @@
 <?php
 /**
- * Setup page under Appearance ▸ TargetWeb Summit Setup.
+ * Setup page under Appearance ▸ TargetWeb - Overdrive Setup.
  *
  * @package TargetWeb3
  */
@@ -20,8 +20,8 @@ function tw3_find_post_by_title( $title, $post_type = 'page' ) {
 
 function tw3_setup_admin_menu() {
 	add_theme_page(
-		__( 'TargetWeb Summit Setup', 'targetweb3' ),
-		__( 'TargetWeb Summit Setup', 'targetweb3' ),
+		__( 'TargetWeb - Overdrive Setup', 'targetweb3' ),
+		__( 'TargetWeb - Overdrive Setup', 'targetweb3' ),
 		'manage_options',
 		'tw3-setup',
 		'tw3_setup_page'
@@ -177,8 +177,8 @@ function tw3_setup_page() {
 	$front_page_set = 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' );
 	?>
 	<div class="wrap">
-		<h1><?php _e( 'TargetWeb Summit — Theme Setup', 'targetweb3' ); ?></h1>
-		<p><?php _e( 'The homepage ships fully populated — categories, brands, why-us tiles, and every text field are all real, editable content already. Go to Appearance ▸ Customize ▸ "⚙ TargetWeb Summit Theme Options" to add your own photos and edit any text, or use the tools below.', 'targetweb3' ); ?></p>
+		<h1><?php _e( 'TargetWeb - Overdrive — Theme Setup', 'targetweb3' ); ?></h1>
+		<p><?php _e( 'The homepage ships fully populated — categories, brands, why-us tiles, and every text field are all real, editable content already. Go to Appearance ▸ Customize ▸ "⚙ TargetWeb - Overdrive Theme Options" to add your own photos and edit any text, or use the tools below.', 'targetweb3' ); ?></p>
 
 		<?php if ( $front_page_set ) : ?>
 			<div class="notice notice-success inline"><p><?php _e( 'Your homepage is set correctly.', 'targetweb3' ); ?></p></div>

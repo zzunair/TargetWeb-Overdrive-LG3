@@ -7,7 +7,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'TW3_VERSION', '1.0.0' );
+define( 'TW3_VERSION', '1.0.3' );
 define( 'TW3_DIR', get_template_directory() );
 define( 'TW3_URI', get_template_directory_uri() );
 
@@ -110,6 +110,8 @@ require TW3_DIR . '/inc/customizer.php';
 require TW3_DIR . '/inc/demo-content.php';
 require TW3_DIR . '/inc/template-tags.php';
 require TW3_DIR . '/inc/form-handler.php';
+require TW3_DIR . '/inc/seo.php';
+require TW3_DIR . '/inc/maintenance.php';
 
 function tw3_excerpt_length( $length ) { return 30; }
 add_filter( 'excerpt_length', 'tw3_excerpt_length' );

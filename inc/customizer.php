@@ -62,7 +62,7 @@ function tw3_customize_register( $wp_customize ) {
 
 	/* ================= PANEL ================= */
 	$wp_customize->add_panel( 'tw3_panel', array(
-		'title'       => __( '⚙ TargetWeb Summit Theme Options', 'targetweb3' ),
+		'title'       => __( '⚙ TargetWeb - Overdrive Theme Options', 'targetweb3' ),
 		'description' => __( 'Every section of the homepage is editable here — colors, hero, categories (with click-to-open popups), brands, why-us, quote form, and footer. No code needed.', 'targetweb3' ),
 		'priority'    => 1,
 	) );

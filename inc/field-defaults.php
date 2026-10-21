@@ -75,6 +75,7 @@ function tw3_text_defaults() {
 		'tw3_social_instagram' => '',
 		'tw3_social_youtube'   => '',
 		'tw3_social_linkedin'  => '',
+		'tw3_seo_desc'         => 'Commercial outdoor power equipment for professionals. Request a quote for mowers, saws, trimmers, generators, parts, and service.',
 
 		// Images
 		'tw3_hero_image' => TW3_URI . '/assets/images/scenes/hero.svg',
