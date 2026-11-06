@@ -1,6 +1,6 @@
 <?php
 /**
- * Setup page under Appearance ▸ TargetWeb Summit Setup.
+ * Setup page under Appearance ▸ TargetWeb - Overdrive Setup.
  *
  * @package TargetWeb3
  */
@@ -20,8 +20,8 @@ function tw3_find_post_by_title( $title, $post_type = 'page' ) {
 
 function tw3_setup_admin_menu() {
 	add_theme_page(
-		__( 'TargetWeb Summit Setup', 'targetweb3' ),
-		__( 'TargetWeb Summit Setup', 'targetweb3' ),
+		__( 'TargetWeb - Overdrive Setup', 'targetweb3' ),
+		__( 'TargetWeb - Overdrive Setup', 'targetweb3' ),
 		'manage_options',
 		'tw3-setup',
 		'tw3_setup_page'
@@ -177,8 +177,8 @@ function tw3_setup_page() {
 	$front_page_set = 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' );
 	?>
 	<div class="wrap">
-		<h1><?php _e( 'TargetWeb Summit — Theme Setup', 'targetweb3' ); ?></h1>
-		<p><?php _e( 'The homepage ships fully populated — categories, brands, why-us tiles, and every text field are all real, editable content already. Go to Appearance ▸ Customize ▸ "⚙ TargetWeb Summit Theme Options" to add your own photos and edit any text, or use the tools below.', 'targetweb3' ); ?></p>
+		<h1><?php _e( 'TargetWeb - Overdrive — Theme Setup', 'targetweb3' ); ?></h1>
+		<p><?php _e( 'The homepage ships fully populated — categories, brands, why-us tiles, and every text field are all real, editable content already. Go to Appearance ▸ Customize ▸ "⚙ TargetWeb - Overdrive Theme Options" to add your own photos and edit any text, or use the tools below.', 'targetweb3' ); ?></p>
 
 		<?php if ( $front_page_set ) : ?>
 			<div class="notice notice-success inline"><p><?php _e( 'Your homepage is set correctly.', 'targetweb3' ); ?></p></div>
@@ -203,7 +203,7 @@ function tw3_setup_page() {
 
 		<hr>
 		<h2><?php _e( 'Reset ALL theme text/settings to demo defaults', 'targetweb3' ); ?></h2>
-		<p class="description"><?php _e( 'Clears every text, color, and image setting and restores the full demo. Categories / Brands / Why Choose Us are reset by the button below, separately.', 'targetweb3' ); ?></p>
+		<p class="description"><?php _e( 'Clears every text, color, and image setting and restores the full demo. Repeater blocks (categories, brands, services, tiles, reviews, FAQs) are reset by the button below, separately.', 'targetweb3' ); ?></p>
 		<form method="post" style="margin-bottom:28px;">
 			<?php wp_nonce_field( 'tw3_reset_all', 'tw3_reset_all_nonce' ); ?>
 			<button type="submit" name="tw3_reset_all" class="button" onclick="return confirm('<?php echo esc_js( __( 'Reset every theme text, color, and image setting to the demo defaults? This cannot be undone.', 'targetweb3' ) ); ?>');">
@@ -213,7 +213,7 @@ function tw3_setup_page() {
 
 		<hr>
 		<h2><?php _e( 'Reset content blocks to demo defaults', 'targetweb3' ); ?></h2>
-		<p class="description"><?php _e( 'Clears edits to Equipment Categories, Brands, and Why Choose Us tiles and restores the original demo rows.', 'targetweb3' ); ?></p>
+		<p class="description"><?php _e( 'Clears edits to Equipment Categories, Brands, Services, Why Choose Us tiles, Testimonials, and FAQs and restores the original demo rows.', 'targetweb3' ); ?></p>
 		<form method="post">
 			<?php wp_nonce_field( 'tw3_reset_blocks', 'tw3_reset_nonce' ); ?>
 			<button type="submit" name="tw3_reset_blocks" class="button" onclick="return confirm('<?php echo esc_js( __( 'Reset all content blocks to demo defaults? This cannot be undone.', 'targetweb3' ) ); ?>');">
@@ -253,9 +253,9 @@ function tw3_handle_setup_actions() {
 	}
 
 	if ( isset( $_POST['tw3_reset_blocks'] ) && isset( $_POST['tw3_reset_nonce'] ) && wp_verify_nonce( $_POST['tw3_reset_nonce'], 'tw3_reset_blocks' ) ) {
-		remove_theme_mod( 'tw3_categories_repeater' );
-		remove_theme_mod( 'tw3_brands_repeater' );
-		remove_theme_mod( 'tw3_features_repeater' );
+		foreach ( array_keys( tw3_repeater_defaults() ) as $key ) {
+			remove_theme_mod( $key );
+		}
 		add_action( 'admin_notices', function () {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Content blocks reset to demo defaults.', 'targetweb3' ) . '</p></div>';
 		} );

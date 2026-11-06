@@ -11,7 +11,8 @@
 				<?php if ( has_custom_logo() ) : the_custom_logo(); else : ?>
 					<div class="tw3-header__logo-fallback">
 						<span class="tw3-logo-bullet" aria-hidden="true"></span>
-						<span class="tw3-logo-text"><?php bloginfo( 'name' ); ?></span>
+						<?php $tw3_logo_text = tw3_opt( 'tw3_logo_text', 'MowtivatedPwr' ); ?>
+						<span class="tw3-logo-text"><?php echo esc_html( $tw3_logo_text ? $tw3_logo_text : 'MowtivatedPwr' ); ?></span>
 					</div>
 				<?php endif; ?>
 				<p class="tw3-footer__tagline"><?php echo esc_html( tw3_opt( 'tw3_footer_tagline' ) ); ?></p>

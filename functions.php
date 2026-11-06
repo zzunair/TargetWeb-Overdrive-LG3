@@ -7,7 +7,20 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'TW3_VERSION', '1.0.0' );
+define( 'TW3_VERSION', '1.0.4' );
+
+if ( ! function_exists( 'tw_main_menu_args' ) ) {
+	function tw_main_menu_args( $args = array() ) {
+		$menu = wp_get_nav_menu_object( 'Main Menu' );
+		if ( ! $menu ) {
+			$menu = wp_get_nav_menu_object( 'main-menu' );
+		}
+		if ( $menu ) {
+			$args['menu'] = (int) $menu->term_id;
+		}
+		return $args;
+	}
+}
 define( 'TW3_DIR', get_template_directory() );
 define( 'TW3_URI', get_template_directory_uri() );
 
@@ -43,6 +56,9 @@ function tw3_scripts() {
 	wp_enqueue_style( 'tw3-google-fonts', 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap', array(), null );
 	wp_enqueue_style( 'tw3-style', TW3_URI . '/style.css', array(), TW3_VERSION );
 	wp_enqueue_style( 'tw3-main', TW3_URI . '/assets/css/main.css', array( 'tw3-style' ), TW3_VERSION );
+	if ( get_stylesheet() !== get_template() ) {
+		wp_enqueue_style( 'tw3-child', get_stylesheet_uri(), array( 'tw3-main' ), wp_get_theme()->get( 'Version' ) );
+	}
 
 	wp_enqueue_script( 'tw3-main', TW3_URI . '/assets/js/main.js', array(), TW3_VERSION, true );
 
@@ -110,6 +126,8 @@ require TW3_DIR . '/inc/customizer.php';
 require TW3_DIR . '/inc/demo-content.php';
 require TW3_DIR . '/inc/template-tags.php';
 require TW3_DIR . '/inc/form-handler.php';
+require TW3_DIR . '/inc/seo.php';
+require TW3_DIR . '/inc/maintenance.php';
 
 function tw3_excerpt_length( $length ) { return 30; }
 add_filter( 'excerpt_length', 'tw3_excerpt_length' );
@@ -123,3 +141,15 @@ function tw3_editor_color_palette() {
 	) );
 }
 add_action( 'after_setup_theme', 'tw3_editor_color_palette' );
+
+/**
+ * TargetCRM widget. Prints only when a client ID is saved.
+ */
+function tw3_targetcrm_widget() {
+	$client_id = sanitize_text_field( (string) get_theme_mod( 'targetcrm_client_id', '' ) );
+	if ( '' === $client_id ) {
+		return;
+	}
+	echo '<script src="https://app.constellationdealer.com/widget.js" id="target-crm-widget" data-client-id="' . esc_attr( $client_id ) . '" defer></script>' . "\n";
+}
+add_action( 'wp_head', 'tw3_targetcrm_widget', 20 );

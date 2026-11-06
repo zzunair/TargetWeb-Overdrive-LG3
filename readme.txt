@@ -1,4 +1,4 @@
-=== TargetWeb Summit ===
+=== TargetWeb - Overdrive ===
 Author: TargetWeb
 Author URI: https://www.idealcomputersystems.com/targetweb
 Requires at least: 6.0
@@ -16,7 +16,7 @@ plugin dependency.
    sets the homepage, creates About Us / Support / Blog pages, adds 3 sample
    blog posts, and creates + assigns the Primary Menu and the footer
    Equipment menu. The site is fully browsable immediately.
-2. Go to Appearance > Customize > "⚙ TargetWeb Summit Theme Options." Everything
+2. Go to Appearance > Customize > "⚙ TargetWeb - Overdrive Theme Options." Everything
    is editable there:
      - ↕ Homepage Section Order — reorder or hide any of the 7 homepage
        sections
@@ -35,7 +35,7 @@ plugin dependency.
    cards, quote section, CTA banner) — it opens the normal WordPress media
    library. Until you do, each image slot shows original placeholder
    artwork (no stock photography, so no licensing risk).
-4. If you ever want to start over, Appearance > TargetWeb Summit Setup has
+4. If you ever want to start over, Appearance > TargetWeb - Overdrive Setup has
    buttons to re-create demo pages/menus, reset all text/color/image
    settings, or reset just the content blocks (Categories/Brands/Why Us).
 

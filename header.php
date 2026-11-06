@@ -25,19 +25,20 @@
 			<?php else : ?>
 				<a class="tw3-header__logo-fallback" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<span class="tw3-logo-bullet" aria-hidden="true"></span>
-					<span class="tw3-logo-text"><?php bloginfo( 'name' ); ?></span>
+					<?php $tw3_logo_text = tw3_opt( 'tw3_logo_text', 'MowtivatedPwr' ); ?>
+					<span class="tw3-logo-text"><?php echo esc_html( $tw3_logo_text ? $tw3_logo_text : 'MowtivatedPwr' ); ?></span>
 				</a>
 			<?php endif; ?>
 		</div>
 
 		<nav class="tw3-header__nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'targetweb3' ); ?>">
 			<?php
-			wp_nav_menu( array(
+			wp_nav_menu( tw_main_menu_args( array(
 				'theme_location' => 'primary',
 				'container'      => false,
 				'menu_class'     => 'tw3-nav-menu',
-				'fallback_cb'    => 'tw3_default_menu_fallback',
-			) );
+				'fallback_cb'    => false,
+			) ) );
 			?>
 		</nav>
 
@@ -54,12 +55,12 @@
 
 	<div id="tw3-mobile-menu" class="tw3-mobile-menu">
 		<?php
-		wp_nav_menu( array(
+		wp_nav_menu( tw_main_menu_args( array(
 			'theme_location' => 'primary',
 			'container'      => false,
 			'menu_class'     => 'tw3-mobile-menu__list',
-			'fallback_cb'    => 'tw3_default_menu_fallback',
-		) );
+			'fallback_cb'    => false,
+		) ) );
 		?>
 		<a class="tw3-btn tw3-btn--primary" href="<?php echo esc_url( tw3_opt( 'tw3_header_cta_link' ) ); ?>">
 			<?php echo esc_html( tw3_opt( 'tw3_header_cta_text' ) ); ?>

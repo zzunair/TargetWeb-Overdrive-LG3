@@ -62,7 +62,7 @@ function tw3_customize_register( $wp_customize ) {
 
 	/* ================= PANEL ================= */
 	$wp_customize->add_panel( 'tw3_panel', array(
-		'title'       => __( '⚙ TargetWeb Summit Theme Options', 'targetweb3' ),
+		'title'       => __( '⚙ TargetWeb - Overdrive Theme Options', 'targetweb3' ),
 		'description' => __( 'Every section of the homepage is editable here — colors, hero, categories (with click-to-open popups), brands, why-us, quote form, and footer. No code needed.', 'targetweb3' ),
 		'priority'    => 1,
 	) );
@@ -113,6 +113,7 @@ function tw3_customize_register( $wp_customize ) {
 	/* ================= HEADER ================= */
 	$wp_customize->add_section( 'tw3_sec_header', array( 'title' => __( 'Header', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 10 ) );
 	tw3_register_fields( $wp_customize, 'tw3_sec_header', array(
+		'tw3_logo_text'       => array( 'label' => 'Logo text (used when no logo image)', 'default' => 'MowtivatedPwr' ),
 		'tw3_header_cta_text' => array( 'label' => 'Header button text', 'default' => 'Get a Quote' ),
 		'tw3_header_cta_link' => array( 'label' => 'Header button link', 'default' => '#quote', 'type' => 'url' ),
 	) );
@@ -189,6 +190,64 @@ function tw3_customize_register( $wp_customize ) {
 		'Feature', __( 'Features', 'targetweb3' ), 10, 12
 	);
 
+	/* ================= SERVICES (repeater) ================= */
+	$wp_customize->add_section( 'tw3_sec_services', array( 'title' => __( '🧩 Services', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 27 ) );
+	tw3_register_fields( $wp_customize, 'tw3_sec_services', array(
+		'tw3_services_eyebrow' => array( 'label' => 'Eyebrow', 'default' => tw3_text_default( 'tw3_services_eyebrow' ) ),
+		'tw3_services_heading' => array( 'label' => 'Heading', 'default' => tw3_text_default( 'tw3_services_heading' ) ),
+		'tw3_services_sub'     => array( 'label' => 'Subtext', 'type' => 'textarea', 'default' => tw3_text_default( 'tw3_services_sub' ) ),
+	) );
+	tw3_register_repeater( $wp_customize, 'tw3_sec_services', 'tw3_services_repeater', tw3_default_services(), 'tw3_sanitize_services_repeater',
+		array(
+			array( 'key' => 'title', 'label' => 'Title', 'type' => 'text' ),
+			array( 'key' => 'description', 'label' => 'Description', 'type' => 'textarea' ),
+			array( 'key' => 'icon', 'label' => 'Icon', 'type' => 'icon' ),
+		),
+		'Service', __( 'Services', 'targetweb3' ), 100, 8
+	);
+
+	/* ================= TESTIMONIALS (repeater) ================= */
+	$wp_customize->add_section( 'tw3_sec_testimonials', array( 'title' => __( '🧩 Testimonials', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 29 ) );
+	tw3_register_fields( $wp_customize, 'tw3_sec_testimonials', array(
+		'tw3_testimonials_eyebrow' => array( 'label' => 'Eyebrow', 'default' => tw3_text_default( 'tw3_testimonials_eyebrow' ) ),
+		'tw3_testimonials_heading' => array( 'label' => 'Heading', 'default' => tw3_text_default( 'tw3_testimonials_heading' ) ),
+		'tw3_testimonials_sub'     => array( 'label' => 'Subtext', 'type' => 'textarea', 'default' => tw3_text_default( 'tw3_testimonials_sub' ) ),
+	) );
+	tw3_register_repeater( $wp_customize, 'tw3_sec_testimonials', 'tw3_testimonials_repeater', tw3_default_testimonials(), 'tw3_sanitize_testimonials_repeater',
+		array(
+			array( 'key' => 'name', 'label' => 'Name', 'type' => 'text' ),
+			array( 'key' => 'role', 'label' => 'Role / Location', 'type' => 'text' ),
+			array( 'key' => 'quote', 'label' => 'Review', 'type' => 'textarea' ),
+			array( 'key' => 'rating', 'label' => 'Stars (1–5)', 'type' => 'number' ),
+		),
+		'Review', __( 'Reviews', 'targetweb3' ), 100, 9
+	);
+
+	/* ================= FAQ (repeater) ================= */
+	$wp_customize->add_section( 'tw3_sec_faq', array( 'title' => __( '🧩 FAQ', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 35 ) );
+	tw3_register_fields( $wp_customize, 'tw3_sec_faq', array(
+		'tw3_faq_eyebrow' => array( 'label' => 'Eyebrow', 'default' => tw3_text_default( 'tw3_faq_eyebrow' ) ),
+		'tw3_faq_heading' => array( 'label' => 'Heading', 'default' => tw3_text_default( 'tw3_faq_heading' ) ),
+		'tw3_faq_sub'     => array( 'label' => 'Subtext', 'type' => 'textarea', 'default' => tw3_text_default( 'tw3_faq_sub' ) ),
+	) );
+	tw3_register_repeater( $wp_customize, 'tw3_sec_faq', 'tw3_faqs_repeater', tw3_default_faqs(), 'tw3_sanitize_faqs_repeater',
+		array(
+			array( 'key' => 'question', 'label' => 'Question', 'type' => 'text' ),
+			array( 'key' => 'answer', 'label' => 'Answer', 'type' => 'textarea' ),
+		),
+		'Question', __( 'Questions', 'targetweb3' ), 100, 12
+	);
+
+	/* ================= VISIT US ================= */
+	$wp_customize->add_section( 'tw3_sec_visit', array( 'title' => __( 'Visit Us', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 38,
+		'description' => __( 'Address, phone, email, and hours come from Contact Info.', 'targetweb3' ) ) );
+	tw3_register_fields( $wp_customize, 'tw3_sec_visit', array(
+		'tw3_visit_eyebrow'  => array( 'label' => 'Eyebrow', 'default' => tw3_text_default( 'tw3_visit_eyebrow' ) ),
+		'tw3_visit_heading'  => array( 'label' => 'Heading', 'default' => tw3_text_default( 'tw3_visit_heading' ) ),
+		'tw3_visit_sub'      => array( 'label' => 'Subtext', 'type' => 'textarea', 'default' => tw3_text_default( 'tw3_visit_sub' ) ),
+		'tw3_visit_map_link' => array( 'label' => 'Directions link (Google Maps URL)', 'type' => 'url', 'default' => tw3_text_default( 'tw3_visit_map_link' ) ),
+	) );
+
 	/* ================= QUOTE FORM ================= */
 	$wp_customize->add_section( 'tw3_sec_quote', array( 'title' => __( 'Quote Form', 'targetweb3' ), 'panel' => 'tw3_panel', 'priority' => 32 ) );
 	tw3_register_fields( $wp_customize, 'tw3_sec_quote', array(
@@ -248,6 +307,22 @@ function tw3_customize_register( $wp_customize ) {
 		'tw3_social_instagram' => array( 'label' => 'Instagram URL', 'type' => 'url', 'default' => '' ),
 		'tw3_social_youtube'   => array( 'label' => 'YouTube URL', 'type' => 'url', 'default' => '' ),
 		'tw3_social_linkedin'  => array( 'label' => 'LinkedIn URL', 'type' => 'url', 'default' => '' ),
+	) );
+
+	$wp_customize->add_section( 'tw3_sec_targetcrm', array(
+		'title'    => __( 'TargetCRM', 'targetweb3' ),
+		'panel'    => 'tw3_panel',
+		'priority' => 80,
+	) );
+	$wp_customize->add_setting( 'targetcrm_client_id', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'targetcrm_client_id', array(
+		'label'       => __( 'TargetCRM client ID', 'targetweb3' ),
+		'description' => __( 'Loads the Constellation dealer widget. Leave empty to keep it off.', 'targetweb3' ),
+		'section'     => 'tw3_sec_targetcrm',
+		'type'        => 'text',
 	) );
 }
 add_action( 'customize_register', 'tw3_customize_register' );
