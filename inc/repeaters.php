@@ -7,9 +7,26 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Demo rows for each repeater, used until the block is saved in the Customizer.
+ */
+function tw3_repeater_defaults() {
+	return array(
+		'tw3_categories_repeater'   => 'tw3_default_categories',
+		'tw3_brands_repeater'       => 'tw3_default_brands',
+		'tw3_features_repeater'     => 'tw3_default_features',
+		'tw3_services_repeater'     => 'tw3_default_services',
+		'tw3_testimonials_repeater' => 'tw3_default_testimonials',
+		'tw3_faqs_repeater'         => 'tw3_default_faqs',
+	);
+}
+
 function tw3_get_repeater( $key ) {
-	$raw = get_theme_mod( $key, '' );
-	if ( empty( $raw ) ) return array();
+	$raw = get_theme_mod( $key, null );
+	if ( null === $raw || false === $raw || '' === $raw ) {
+		$map = tw3_repeater_defaults();
+		return isset( $map[ $key ] ) ? call_user_func( $map[ $key ] ) : array();
+	}
 	$data = json_decode( $raw, true );
 	return is_array( $data ) ? $data : array();
 }
@@ -75,9 +92,79 @@ function tw3_default_brands() {
 	);
 }
 
+function tw3_default_services() {
+	return array(
+		array( 'title' => 'Equipment Sales', 'description' => 'New commercial and residential equipment from the brands crews trust, sized to the work you do.', 'icon' => 'store' ),
+		array( 'title' => 'Service & Repair', 'description' => 'Factory-trained technicians for tune-ups, warranty work, and major repairs on every brand we sell.', 'icon' => 'admin-tools' ),
+		array( 'title' => 'Parts & Accessories', 'description' => 'OEM parts, blades, chains, and accessories in stock or ordered fast for your exact model.', 'icon' => 'admin-generic' ),
+		array( 'title' => 'Fleet Programs', 'description' => 'Volume pricing, priority scheduling, and financing built for landscaping crews and municipalities.', 'icon' => 'groups' ),
+	);
+}
+
+function tw3_default_testimonials() {
+	return array(
+		array( 'name' => 'Marcus T.', 'role' => 'Landscaping Contractor', 'quote' => 'They matched our crew with the right zero-turns and had them delivered before the season started. Service turnaround is the fastest we have found.', 'rating' => '5' ),
+		array( 'name' => 'Dana R.', 'role' => 'Property Manager', 'quote' => 'Straight answers, fair quotes, and they follow up. Our generators were sized correctly the first time.', 'rating' => '5' ),
+		array( 'name' => 'Luis P.', 'role' => 'Homeowner', 'quote' => 'I came in for a chainsaw and left with real advice on what I actually needed. The repair shop is just as good.', 'rating' => '5' ),
+	);
+}
+
+function tw3_default_faqs() {
+	return array(
+		array( 'question' => 'How fast will I get a quote?', 'answer' => 'Most quote requests get a reply within one business day, often the same day during the week.' ),
+		array( 'question' => 'Do you offer financing?', 'answer' => 'Yes. We offer financing on qualifying equipment, including fleet programs for commercial customers.' ),
+		array( 'question' => 'Do you service brands you do not sell?', 'answer' => 'In most cases, yes. Call the shop with the make and model and we will confirm parts availability.' ),
+		array( 'question' => 'Can you deliver equipment?', 'answer' => 'We offer local delivery and pickup. Ask about delivery when you request your quote.' ),
+		array( 'question' => 'Do you have parts in stock?', 'answer' => 'We stock common parts for the brands we carry and can order the rest quickly.' ),
+	);
+}
+
 /* ---------------------------------------------------------------
  * Sanitizers
  * --------------------------------------------------------------- */
+
+function tw3_sanitize_services_repeater( $json ) {
+	$rows = json_decode( $json, true );
+	if ( ! is_array( $rows ) ) return wp_json_encode( array() );
+	$clean = array();
+	foreach ( $rows as $row ) {
+		$clean[] = array(
+			'title'       => sanitize_text_field( $row['title'] ?? '' ),
+			'description' => sanitize_textarea_field( $row['description'] ?? '' ),
+			'icon'        => sanitize_html_class( $row['icon'] ?? '' ),
+		);
+	}
+	return wp_json_encode( $clean );
+}
+
+function tw3_sanitize_testimonials_repeater( $json ) {
+	$rows = json_decode( $json, true );
+	if ( ! is_array( $rows ) ) return wp_json_encode( array() );
+	$clean = array();
+	foreach ( $rows as $row ) {
+		$rating  = (int) ( $row['rating'] ?? 5 );
+		$clean[] = array(
+			'name'   => sanitize_text_field( $row['name'] ?? '' ),
+			'role'   => sanitize_text_field( $row['role'] ?? '' ),
+			'quote'  => sanitize_textarea_field( $row['quote'] ?? '' ),
+			'rating' => (string) max( 1, min( 5, $rating ) ),
+		);
+	}
+	return wp_json_encode( $clean );
+}
+
+function tw3_sanitize_faqs_repeater( $json ) {
+	$rows = json_decode( $json, true );
+	if ( ! is_array( $rows ) ) return wp_json_encode( array() );
+	$clean = array();
+	foreach ( $rows as $row ) {
+		$clean[] = array(
+			'question' => sanitize_text_field( $row['question'] ?? '' ),
+			'answer'   => sanitize_textarea_field( $row['answer'] ?? '' ),
+		);
+	}
+	return wp_json_encode( $clean );
+}
 
 function tw3_sanitize_categories_repeater( $json ) {
 	$rows = json_decode( $json, true );
@@ -141,13 +228,17 @@ function tw3_icon_choices() {
 
 function tw3_section_registry() {
 	return array(
-		'hero'        => array( 'label' => 'Hero',                  'template' => 'hero' ),
-		'categories'  => array( 'label' => 'Equipment Categories',   'template' => 'categories' ),
-		'brands'      => array( 'label' => 'Brand Wall',             'template' => 'brand-strip' ),
-		'why_us'      => array( 'label' => 'Why Choose Us',          'template' => 'why-us' ),
-		'quote'       => array( 'label' => 'Quote Form',             'template' => 'quote' ),
-		'trust_row'   => array( 'label' => 'Mini Trust Row',         'template' => 'trust-row' ),
-		'cta_banner'  => array( 'label' => 'CTA Banner',             'template' => 'cta-banner' ),
+		'hero'         => array( 'label' => 'Hero',                 'template' => 'hero' ),
+		'categories'   => array( 'label' => 'Equipment Categories', 'template' => 'categories' ),
+		'brands'       => array( 'label' => 'Brand Wall',           'template' => 'brand-strip' ),
+		'services'     => array( 'label' => 'Services',             'template' => 'services' ),
+		'why_us'       => array( 'label' => 'Why Choose Us',        'template' => 'why-us' ),
+		'testimonials' => array( 'label' => 'Testimonials',         'template' => 'testimonials' ),
+		'quote'        => array( 'label' => 'Quote Form',           'template' => 'quote' ),
+		'trust_row'    => array( 'label' => 'Mini Trust Row',       'template' => 'trust-row' ),
+		'faq'          => array( 'label' => 'FAQ',                  'template' => 'faq' ),
+		'visit'        => array( 'label' => 'Visit Us',             'template' => 'visit' ),
+		'cta_banner'   => array( 'label' => 'CTA Banner',           'template' => 'cta-banner' ),
 	);
 }
 

@@ -17,6 +17,7 @@ function tw3_text_defaults() {
 
 	$defaults = array(
 		// Header
+		'tw3_logo_text'       => 'MowtivatedPwr',
 		'tw3_header_cta_text' => 'Get a Quote',
 		'tw3_header_cta_link' => '#quote',
 
@@ -43,6 +44,19 @@ function tw3_text_defaults() {
 		'tw3_quote_eyebrow' => 'Lead Generation',
 		'tw3_quote_heading' => 'Get a Quote Today',
 		'tw3_quote_sub'     => 'Tell us what you need and our team will get back to you with the best solution.',
+		'tw3_services_eyebrow'     => 'What We Do',
+		'tw3_services_heading'     => 'Sales, Service & Support',
+		'tw3_services_sub'         => 'One dealer for the equipment, the parts, and the shop that keeps it running.',
+		'tw3_testimonials_eyebrow' => 'Reviews',
+		'tw3_testimonials_heading' => 'Trusted by Crews & Homeowners',
+		'tw3_testimonials_sub'     => 'What our customers say about buying and servicing with us.',
+		'tw3_faq_eyebrow'          => 'FAQ',
+		'tw3_faq_heading'          => 'Common Questions',
+		'tw3_faq_sub'              => 'Quick answers about quotes, financing, service, and delivery.',
+		'tw3_visit_eyebrow'        => 'Visit Us',
+		'tw3_visit_heading'        => 'Come See the Lineup',
+		'tw3_visit_sub'            => 'Stop by the showroom to see equipment in person and talk with our team.',
+		'tw3_visit_map_link'       => 'https://maps.google.com',
 		'tw3_cta_heading_white' => 'Need Equipment Fast?',
 		'tw3_cta_heading_green' => 'Talk to an Expert Today.',
 		'tw3_cta_btn_text'      => 'Get Assistance',

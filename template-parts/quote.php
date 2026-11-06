@@ -14,7 +14,9 @@ if ( 'email' === $quote_state ) {
 $equipment_options = array_filter( array_map( 'trim', explode( "\n", tw3_opt( 'tw3_quote_equipment_options' ) ) ) );
 $budget_options    = array_filter( array_map( 'trim', explode( "\n", tw3_opt( 'tw3_quote_budget_options' ) ) ) );
 ?>
-<section class="tw3-quote" id="quote">
+<section class="tw3-quote-section" id="quote">
+<div class="tw3-container">
+<div class="tw3-quote">
 	<div class="tw3-quote__media">
 		<?php if ( $img ) : ?>
 			<img src="<?php echo esc_url( $img ); ?>" alt="">
@@ -94,4 +96,6 @@ $budget_options    = array_filter( array_map( 'trim', explode( "\n", tw3_opt( 't
 		</form>
 		<?php endif; ?>
 	</div>
+</div>
+</div>
 </section>
